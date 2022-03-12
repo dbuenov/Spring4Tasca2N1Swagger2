@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import com.sun.istack.NotNull;
+
 @Entity
 public class Empleat {
 
@@ -14,16 +16,17 @@ public class Empleat {
 	private String feina;
 	private float sou;
 	
+	
 	public Empleat(){
 		
-	}
+	}	
 	
 	public Empleat(String nom, String feina) {
 		this.nom= nom;
 		this.feina= feina;
-		setSou();
+		setSou();		
 	}
-
+	
 	public Long getId() {
 		return id;
 	}
@@ -55,6 +58,7 @@ public class Empleat {
 	// depen de la feina rep un sou
 	
 	public void setSou() {
+		
 		if (this.feina.equalsIgnoreCase("tecnic")) {
 			this.sou = 1600F;
 		}else if(this.feina.equalsIgnoreCase("comercial")) {
@@ -65,7 +69,8 @@ public class Empleat {
 			this.sou = 1000F;
 		}
 	}
-
+	
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(feina, id, nom);

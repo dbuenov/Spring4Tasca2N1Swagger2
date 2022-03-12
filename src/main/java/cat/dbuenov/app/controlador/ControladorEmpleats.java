@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import cat.dbuenov.app.bean.Empleat;
@@ -34,11 +35,21 @@ public class ControladorEmpleats {
 	
 	// Crea un empleat
 
+	/*
 	@PostMapping("/empleats")
 	public Empleat nouEmpleat(@RequestBody Empleat nouEmplat) {
+		//nouEmplat.setSou();
 		return baseDeDades.save(nouEmplat);		
 	}
-
+	*/
+	
+	@PostMapping("/empleats")
+	public Empleat nouEmpleat(@RequestParam(name="nom",required=true) String nom, @RequestParam(name="feina",required=true) String feina) {
+		Empleat empleat = new Empleat(nom, feina);
+		return baseDeDades.save(empleat);
+		
+	}
+	
 	// Mostra un empleat
 	
 	@GetMapping("/empleats/{id}")
@@ -48,6 +59,7 @@ public class ControladorEmpleats {
 	}
 	
 	// Mostra empleats per feina
+	
 	@GetMapping("/feines/{feina}")
 	public List<Empleat> mostraEmpleatsFeina(@PathVariable String feina){
 		
