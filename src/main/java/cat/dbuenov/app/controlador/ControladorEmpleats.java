@@ -66,7 +66,7 @@ public class ControladorEmpleats {
 	// Actualitza un empleat
 	
 	@PutMapping("/empleats/{id}")
-	public Empleat replaceEmployee(@RequestBody Empleat nouEmpleat, @PathVariable Long id) {
+	public Empleat canviarEmpleat(@RequestBody Empleat nouEmpleat, @PathVariable Long id) {
 
 		return baseDeDades.findById(id)
 				.map(empleat -> {
